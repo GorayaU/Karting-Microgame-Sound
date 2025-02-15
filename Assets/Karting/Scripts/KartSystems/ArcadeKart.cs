@@ -319,6 +319,8 @@ namespace KartGame.KartSystems
             m_PreviousGroundPercent = GroundPercent;
 
             UpdateDriftVFXOrientation();
+            
+            Debug.Log(Math.Round(Rigidbody.velocity.magnitude));
         }
 
         void GatherInputs()

@@ -84,11 +84,7 @@ namespace KartGame.KartSystems
                     kart.SetCanMove(false);
                     BounceFlag = hasCollided = true;
                     resumeTime = Time.time + PauseTime;
-
-                    if (BounceSound)
-                    {
-                        AudioUtility.CreateSFX(BounceSound, transform.position, AudioUtility.AudioGroups.Collision, 0f);
-                    }
+                    
                     return;
                 }
             }
