@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{a831888b-a18a-4a01-823e-9b90a33b5f2e}">
 		<property name="name">
-			<value>Break</value>
+			<value>Brake</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -56,7 +56,11 @@
 			<destination>{7f70f277-5178-4770-998e-790afdb0472a}</destination>
 		</relationship>
 	</object>
-	<object class="EventAutomatableProperties" id="{1bd7e212-6c0b-46a7-b0a2-9858aff731d3}" />
+	<object class="EventAutomatableProperties" id="{1bd7e212-6c0b-46a7-b0a2-9858aff731d3}">
+		<property name="maximumDistance">
+			<value>9800</value>
+		</property>
+	</object>
 	<object class="MarkerTrack" id="{9baa9192-6752-48b3-8cde-68934f512f8b}" />
 	<object class="GroupTrack" id="{860341ba-2aa5-439d-88fd-0a7173dfec52}">
 		<relationship name="modules">

@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Parameter 1
   StudioPath: 
   Min: 0
-  Max: 0.99
+  Max: 15
   Default: 0
   ID:
     data1: 997788041
@@ -94,11 +94,90 @@ MonoBehaviour:
   Path: Karting Sound/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638752272280849447
+  lastModified: 638752316410246732
   FileSizes:
   - Name: Desktop
-    Value: 899200
+    Value: 902368
   Exists: 1
+--- !u!114 &-6127147134876570777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Engine/Engine_Speed
+  m_EditorClassIdentifier: 
+  Name: Engine_Speed
+  StudioPath: 
+  Min: 0
+  Max: 15
+  Default: 0
+  ID:
+    data1: 997788041
+    data2: 3575162751
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-5791244337488484410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Engine
+  m_EditorClassIdentifier: 
+  Path: event:/Engine
+  Guid:
+    Data1: 1561346351
+    Data2: 1170238865
+    Data3: 2064995750
+    Data4: -129728002
+  Banks:
+  - {fileID: 3852189829845774113}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 1204688646041781212}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6870
+--- !u!114 &-5790860846376875718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Brake
+  m_EditorClassIdentifier: 
+  Path: event:/Brake
+  Guid:
+    Data1: -1473148789
+    Data2: 1241620874
+    Data3: -1868874110
+    Data4: 777993123
+  Banks:
+  - {fileID: 1469546791843036462}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 9800
+  Length: 2298
 --- !u!114 &-4653373918869731368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,6 +205,108 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-4491454896087254663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Karting Sound/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638752316410387202
+  FileSizes:
+  - Name: Desktop
+    Value: 930
+  Exists: 1
+--- !u!114 &-4420622825168680787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Song
+  m_EditorClassIdentifier: 
+  Path: event:/Song
+  Guid:
+    Data1: -1907604135
+    Data2: 1203055296
+    Data3: -1561702493
+    Data4: 748424681
+  Banks:
+  - {fileID: -7632162176390143555}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 67056
+--- !u!114 &-1374433376610057093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Break
+  m_EditorClassIdentifier: 
+  Path: event:/Break
+  Guid:
+    Data1: -1473148789
+    Data2: 1241620874
+    Data3: -1868874110
+    Data4: 777993123
+  Banks:
+  - {fileID: 3852189829845774113}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2298
+--- !u!114 &-1257821416648485518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Engine
+  m_EditorClassIdentifier: 
+  Path: event:/Engine
+  Guid:
+    Data1: 251984799
+    Data2: 1216671524
+    Data3: -236483954
+    Data4: -995183925
+  Banks:
+  - {fileID: 1469546791843036462}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -6127147134876570777}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6870
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,20 +320,158 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 5721027706886717589}
-  - {fileID: -7632162176390143555}
+  - {fileID: 989949406377994133}
+  - {fileID: 1469546791843036462}
   EditorEvents:
-  - {fileID: -8092838016227991485}
-  - {fileID: -7988236293027592894}
-  - {fileID: 6000780186865686614}
-  - {fileID: -4653373918869731368}
+  - {fileID: 2479537899039864771}
+  - {fileID: 8725813075841115666}
+  - {fileID: -5790860846376875718}
+  - {fileID: -1257821416648485518}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -7632162176390143555}
+  - {fileID: 1469546791843036462}
   StringsBanks:
-  - {fileID: 5721027706886717589}
-  cacheTime: 638752272280889681
+  - {fileID: 989949406377994133}
+  cacheTime: 638752540739112452
   cacheVersion: 131622
+--- !u!114 &44549552851586562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Wall Hit
+  m_EditorClassIdentifier: 
+  Path: event:/Wall Hit
+  Guid:
+    Data1: -886196529
+    Data2: 1098222104
+    Data3: -1445561444
+    Data4: -1540359975
+  Banks:
+  - {fileID: 3852189829845774113}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &989949406377994133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Karting Sound/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638752540739112452
+  FileSizes:
+  - Name: Desktop
+    Value: 932
+  Exists: 1
+--- !u!114 &1204688646041781212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Engine/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  StudioPath: 
+  Min: 0
+  Max: 15
+  Default: 0
+  ID:
+    data1: 997788041
+    data2: 3575162751
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &1469546791843036462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Karting Sound/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638752540739072478
+  FileSizes:
+  - Name: Desktop
+    Value: 902240
+  Exists: 1
+--- !u!114 &2479537899039864771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Song
+  m_EditorClassIdentifier: 
+  Path: event:/Song
+  Guid:
+    Data1: -1907604135
+    Data2: 1203055296
+    Data3: -1561702493
+    Data4: 748424681
+  Banks:
+  - {fileID: 1469546791843036462}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 67056
+--- !u!114 &3852189829845774113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Karting Sound/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638752316410246732
+  FileSizes:
+  - Name: Desktop
+    Value: 902368
+  Exists: 1
 --- !u!114 &5721027706886717589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,12 +487,12 @@ MonoBehaviour:
   Path: Karting Sound/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638752272280889681
+  lastModified: 638752316410387202
   FileSizes:
   - Name: Desktop
-    Value: 952
+    Value: 930
   Exists: 1
---- !u!114 &6000780186865686614
+--- !u!114 &7392099568755868974
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,20 +502,47 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Background Song
+  m_Name: event:/Song
   m_EditorClassIdentifier: 
-  Path: event:/Background Song
+  Path: event:/Song
   Guid:
-    Data1: -793736260
-    Data2: 1299101285
-    Data3: -974870897
-    Data4: -1348017462
+    Data1: -1907604135
+    Data2: 1203055296
+    Data3: -1561702493
+    Data4: 748424681
   Banks:
-  - {fileID: -7632162176390143555}
+  - {fileID: 3852189829845774113}
   IsStream: 1
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
   Length: 67056
+--- !u!114 &8725813075841115666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Wall Hit
+  m_EditorClassIdentifier: 
+  Path: event:/Wall Hit
+  Guid:
+    Data1: -886196529
+    Data2: 1098222104
+    Data3: -1445561444
+    Data4: -1540359975
+  Banks:
+  - {fileID: 1469546791843036462}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0

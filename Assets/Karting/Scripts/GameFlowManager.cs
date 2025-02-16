@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Playables;
 using KartGame.KartSystems;
+using Karting.Scripts.KartSystems;
 using UnityEngine.SceneManagement;
 
 public enum GameState{Play, Won, Lost}

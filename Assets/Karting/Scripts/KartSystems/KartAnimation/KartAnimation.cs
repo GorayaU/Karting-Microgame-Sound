@@ -1,4 +1,5 @@
 ﻿using System;
+using Karting.Scripts.KartSystems;
 using UnityEngine;
 
 namespace KartGame.KartSystems

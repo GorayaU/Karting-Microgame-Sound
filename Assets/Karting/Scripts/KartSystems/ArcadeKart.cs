@@ -1,9 +1,12 @@
 ﻿using System;
-using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.VFX;
+using FMOD.Studio;
+using KartGame.KartSystems;
+using Karting.Audio_Shit;
+using UnityEngine;
+using EventInstance = FMOD.Studio.EventInstance;
 
-namespace KartGame.KartSystems
+namespace Karting.Scripts.KartSystems
 {
     public class ArcadeKart : MonoBehaviour
     {
@@ -19,8 +22,7 @@ namespace KartGame.KartSystems
         [System.Serializable]
         public struct Stats
         {
-            [Header("Movement Settings")]
-            [Min(0.001f), Tooltip("Top speed attainable when moving forward.")]
+            [Header("Movement Settings")] [Min(0.001f), Tooltip("Top speed attainable when moving forward.")]
             public float TopSpeed;
 
             [Tooltip("How quickly the kart reaches top speed.")]
@@ -32,8 +34,7 @@ namespace KartGame.KartSystems
             [Tooltip("How quickly the kart reaches top speed, when moving backward.")]
             public float ReverseAcceleration;
 
-            [Tooltip("How quickly the kart starts accelerating from 0. A higher number means it accelerates faster sooner.")]
-            [Range(0.2f, 1)]
+            [Tooltip("How quickly the kart starts accelerating from 0. A higher number means it accelerates faster sooner.")] [Range(0.2f, 1)]
             public float AccelerationCurve;
 
             [Tooltip("How quickly the kart slows down when the brake is applied.")]
@@ -42,8 +43,7 @@ namespace KartGame.KartSystems
             [Tooltip("How quickly the kart will reach a full stop when no inputs are made.")]
             public float CoastingDrag;
 
-            [Range(0.0f, 1.0f)]
-            [Tooltip("The amount of side-to-side friction.")]
+            [Range(0.0f, 1.0f)] [Tooltip("The amount of side-to-side friction.")]
             public float Grip;
 
             [Tooltip("How tightly the kart can turn left or right.")]
@@ -57,96 +57,105 @@ namespace KartGame.KartSystems
             {
                 return new Stats
                 {
-                    Acceleration        = a.Acceleration + b.Acceleration,
-                    AccelerationCurve   = a.AccelerationCurve + b.AccelerationCurve,
-                    Braking             = a.Braking + b.Braking,
-                    CoastingDrag        = a.CoastingDrag + b.CoastingDrag,
-                    AddedGravity        = a.AddedGravity + b.AddedGravity,
-                    Grip                = a.Grip + b.Grip,
+                    Acceleration = a.Acceleration + b.Acceleration,
+                    AccelerationCurve = a.AccelerationCurve + b.AccelerationCurve,
+                    Braking = a.Braking + b.Braking,
+                    CoastingDrag = a.CoastingDrag + b.CoastingDrag,
+                    AddedGravity = a.AddedGravity + b.AddedGravity,
+                    Grip = a.Grip + b.Grip,
                     ReverseAcceleration = a.ReverseAcceleration + b.ReverseAcceleration,
-                    ReverseSpeed        = a.ReverseSpeed + b.ReverseSpeed,
-                    TopSpeed            = a.TopSpeed + b.TopSpeed,
-                    Steer               = a.Steer + b.Steer,
+                    ReverseSpeed = a.ReverseSpeed + b.ReverseSpeed,
+                    TopSpeed = a.TopSpeed + b.TopSpeed,
+                    Steer = a.Steer + b.Steer,
                 };
             }
         }
 
         public Rigidbody Rigidbody { get; private set; }
-        public InputData Input     { get; private set; }
-        public float AirPercent    { get; private set; }
+        public InputData Input { get; private set; }
+        public float AirPercent { get; private set; }
         public float GroundPercent { get; private set; }
 
         public ArcadeKart.Stats baseStats = new ArcadeKart.Stats
         {
-            TopSpeed            = 10f,
-            Acceleration        = 5f,
-            AccelerationCurve   = 4f,
-            Braking             = 10f,
+            TopSpeed = 10f,
+            Acceleration = 5f,
+            AccelerationCurve = 4f,
+            Braking = 10f,
             ReverseAcceleration = 5f,
-            ReverseSpeed        = 5f,
-            Steer               = 5f,
-            CoastingDrag        = 4f,
-            Grip                = .95f,
-            AddedGravity        = 1f,
+            ReverseSpeed = 5f,
+            Steer = 5f,
+            CoastingDrag = 4f,
+            Grip = .95f,
+            AddedGravity = 1f,
         };
 
-        [Header("Vehicle Visual")] 
-        public List<GameObject> m_VisualWheels;
+        [Header("Vehicle Visual")] public List<GameObject> m_VisualWheels;
 
-        [Header("Vehicle Physics")]
-        [Tooltip("The transform that determines the position of the kart's mass.")]
+        [Header("Vehicle Physics")] [Tooltip("The transform that determines the position of the kart's mass.")]
         public Transform CenterOfMass;
 
-        [Range(0.0f, 20.0f), Tooltip("Coefficient used to reorient the kart in the air. The higher the number, the faster the kart will readjust itself along the horizontal plane.")]
+        [Range(0.0f, 20.0f),
+         Tooltip("Coefficient used to reorient the kart in the air. The higher the number, the faster the kart will readjust itself along the horizontal plane.")]
         public float AirborneReorientationCoefficient = 3.0f;
 
-        [Header("Drifting")]
-        [Range(0.01f, 1.0f), Tooltip("The grip value when drifting.")]
+        [Header("Drifting")] [Range(0.01f, 1.0f), Tooltip("The grip value when drifting.")]
         public float DriftGrip = 0.4f;
+
         [Range(0.0f, 10.0f), Tooltip("Additional steer when the kart is drifting.")]
         public float DriftAdditionalSteer = 5.0f;
+
         [Range(1.0f, 30.0f), Tooltip("The higher the angle, the easier it is to regain full grip.")]
         public float MinAngleToFinishDrift = 10.0f;
+
         [Range(0.01f, 0.99f), Tooltip("Mininum speed percentage to switch back to full grip.")]
         public float MinSpeedPercentToFinishDrift = 0.5f;
+
         [Range(1.0f, 20.0f), Tooltip("The higher the value, the easier it is to control the drift steering.")]
         public float DriftControl = 10.0f;
+
         [Range(0.0f, 20.0f), Tooltip("The lower the value, the longer the drift will last without trying to control it by steering.")]
         public float DriftDampening = 10.0f;
 
-        [Header("VFX")]
-        [Tooltip("VFX that will be placed on the wheels when drifting.")]
+        [Header("VFX")] [Tooltip("VFX that will be placed on the wheels when drifting.")]
         public ParticleSystem DriftSparkVFX;
+
         [Range(0.0f, 0.2f), Tooltip("Offset to displace the VFX to the side.")]
         public float DriftSparkHorizontalOffset = 0.1f;
+
         [Range(0.0f, 90.0f), Tooltip("Angle to rotate the VFX.")]
         public float DriftSparkRotation = 17.0f;
+
         [Tooltip("VFX that will be placed on the wheels when drifting.")]
         public GameObject DriftTrailPrefab;
+
         [Range(-0.1f, 0.1f), Tooltip("Vertical to move the trails up or down and ensure they are above the ground.")]
         public float DriftTrailVerticalOffset;
+
         [Tooltip("VFX that will spawn upon landing, after a jump.")]
         public GameObject JumpVFX;
+
         [Tooltip("VFX that is spawn on the nozzles of the kart.")]
         public GameObject NozzleVFX;
+
         [Tooltip("List of the kart's nozzles.")]
         public List<Transform> Nozzles;
 
-        [Header("Suspensions")]
-        [Tooltip("The maximum extension possible between the kart's body and the wheels.")]
-        [Range(0.0f, 1.0f)]
+        [Header("Suspensions")] [Tooltip("The maximum extension possible between the kart's body and the wheels.")] [Range(0.0f, 1.0f)]
         public float SuspensionHeight = 0.2f;
+
         [Range(10.0f, 100000.0f), Tooltip("The higher the value, the stiffer the suspension will be.")]
         public float SuspensionSpring = 20000.0f;
+
         [Range(0.0f, 5000.0f), Tooltip("The higher the value, the faster the kart will stabilize itself.")]
         public float SuspensionDamp = 500.0f;
-        [Tooltip("Vertical offset to adjust the position of the wheels relative to the kart's body.")]
-        [Range(-1.0f, 1.0f)]
+
+        [Tooltip("Vertical offset to adjust the position of the wheels relative to the kart's body.")] [Range(-1.0f, 1.0f)]
         public float WheelsPositionVerticalOffset = 0.0f;
 
-        [Header("Physical Wheels")]
-        [Tooltip("The physical representations of the Kart's wheels.")]
+        [Header("Physical Wheels")] [Tooltip("The physical representations of the Kart's wheels.")]
         public WheelCollider FrontLeftWheel;
+
         public WheelCollider FrontRightWheel;
         public WheelCollider RearLeftWheel;
         public WheelCollider RearRightWheel;
@@ -168,7 +177,9 @@ namespace KartGame.KartSystems
         float m_DriftTurningPower = 0.0f;
         float m_PreviousGroundPercent = 1.0f;
         readonly List<(GameObject trailRoot, WheelCollider wheel, TrailRenderer trail)> m_DriftTrailInstances = new List<(GameObject, WheelCollider, TrailRenderer)>();
-        readonly List<(WheelCollider wheel, float horizontalOffset, float rotation, ParticleSystem sparks)> m_DriftSparkInstances = new List<(WheelCollider, float, float, ParticleSystem)>();
+
+        readonly List<(WheelCollider wheel, float horizontalOffset, float rotation, ParticleSystem sparks)> m_DriftSparkInstances =
+            new List<(WheelCollider, float, float, ParticleSystem)>();
 
         // can the kart move?
         bool m_CanMove = true;
@@ -180,6 +191,9 @@ namespace KartGame.KartSystems
         Vector3 m_LastCollisionNormal;
         bool m_HasCollision;
         bool m_InAir = false;
+
+        private EventInstance kartEngine;
+        private EventInstance kartBrake;
 
         public void AddPowerup(StatPowerup statPowerup) => m_ActivePowerupList.Add(statPowerup);
         public void SetCanMove(bool move) => m_CanMove = move;
@@ -199,7 +213,6 @@ namespace KartGame.KartSystems
                     if (vfx.sparks.isPlaying)
                         vfx.sparks.Stop(true, ParticleSystemStopBehavior.StopEmitting);
                 }
-                    
             }
 
             foreach (var trail in m_DriftTrailInstances)
@@ -210,7 +223,8 @@ namespace KartGame.KartSystems
         {
             foreach (var vfx in m_DriftSparkInstances)
             {
-                vfx.sparks.transform.position = vfx.wheel.transform.position - (vfx.wheel.radius * Vector3.up) + (DriftTrailVerticalOffset * Vector3.up) + (transform.right * vfx.horizontalOffset);
+                vfx.sparks.transform.position = vfx.wheel.transform.position - (vfx.wheel.radius * Vector3.up) + (DriftTrailVerticalOffset * Vector3.up) +
+                                                (transform.right * vfx.horizontalOffset);
                 vfx.sparks.transform.rotation = transform.rotation * Quaternion.Euler(0.0f, 0.0f, vfx.rotation);
             }
 
@@ -264,6 +278,12 @@ namespace KartGame.KartSystems
             }
         }
 
+        private void Start()
+        {
+            kartEngine = AudioManager.Instance.CreateEventInstance(FmodEvents.Instance.Engine);
+            kartBrake = AudioManager.Instance.CreateEventInstance(FmodEvents.Instance.Brake);
+        }
+
         void AddTrailToWheel(WheelCollider wheel)
         {
             GameObject trailRoot = Instantiate(DriftTrailPrefab, gameObject.transform, false);
@@ -306,7 +326,7 @@ namespace KartGame.KartSystems
                 groundedCount++;
 
             // calculate how grounded and airborne we are
-            GroundPercent = (float) groundedCount / 4.0f;
+            GroundPercent = (float)groundedCount / 4.0f;
             AirPercent = 1 - GroundPercent;
 
             // apply vehicle physics
@@ -314,13 +334,13 @@ namespace KartGame.KartSystems
             {
                 MoveVehicle(Input.Accelerate, Input.Brake, Input.TurnInput);
             }
+
             GroundAirbourne();
 
             m_PreviousGroundPercent = GroundPercent;
 
             UpdateDriftVFXOrientation();
-            
-            Debug.Log(Math.Round(Rigidbody.velocity.magnitude));
+            Debug.Log(Mathf.Round(Rigidbody.velocity.magnitude));
         }
 
         void GatherInputs()
@@ -390,6 +410,7 @@ namespace KartGame.KartSystems
                     float speed = Rigidbody.velocity.magnitude;
                     return dot < 0 ? -(speed / m_FinalStats.ReverseSpeed) : (speed / m_FinalStats.TopSpeed);
                 }
+
                 return 0f;
             }
             else
@@ -454,7 +475,7 @@ namespace KartGame.KartSystems
             bool wasOverMaxSpeed = currentSpeed >= maxSpeed;
 
             // if over max speed, cannot accelerate faster.
-            if (wasOverMaxSpeed && !isBraking) 
+            if (wasOverMaxSpeed && !isBraking)
                 movement *= 0.0f;
 
             Vector3 newVelocity = Rigidbody.velocity + movement * Time.fixedDeltaTime;
@@ -488,7 +509,7 @@ namespace KartGame.KartSystems
                 float angularVelocitySmoothSpeed = 20f;
 
                 // turning is reversed if we're going in reverse and pressing reverse
-                if (!localVelDirectionIsFwd && !accelDirectionIsFwd) 
+                if (!localVelDirectionIsFwd && !accelDirectionIsFwd)
                     angularVelocitySteering *= -1.0f;
 
                 var angularVel = Rigidbody.angularVelocity;
@@ -536,7 +557,8 @@ namespace KartGame.KartSystems
 
                     // Update the turning power based on input
                     float driftMaxSteerValue = m_FinalStats.Steer + DriftAdditionalSteer;
-                    m_DriftTurningPower = Mathf.Clamp(m_DriftTurningPower + (turnInput * Mathf.Clamp01(DriftControl * Time.fixedDeltaTime)), -driftMaxSteerValue, driftMaxSteerValue);
+                    m_DriftTurningPower = Mathf.Clamp(m_DriftTurningPower + (turnInput * Mathf.Clamp01(DriftControl * Time.fixedDeltaTime)), -driftMaxSteerValue,
+                        driftMaxSteerValue);
 
                     bool facingVelocity = Vector3.Dot(Rigidbody.velocity.normalized, transform.forward * Mathf.Sign(accelInput)) > Mathf.Cos(MinAngleToFinishDrift * Mathf.Deg2Rad);
 
@@ -554,11 +576,11 @@ namespace KartGame.KartSystems
                         IsDrifting = false;
                         m_CurrentGrip = m_FinalStats.Grip;
                     }
-
                 }
 
                 // rotate our velocity based on current steer value
-                Rigidbody.velocity = Quaternion.AngleAxis(turningPower * Mathf.Sign(localVel.z) * velocitySteering * m_CurrentGrip * Time.fixedDeltaTime, transform.up) * Rigidbody.velocity;
+                Rigidbody.velocity = Quaternion.AngleAxis(turningPower * Mathf.Sign(localVel.z) * velocitySteering * m_CurrentGrip * Time.fixedDeltaTime, transform.up) *
+                                     Rigidbody.velocity;
             }
             else
             {
@@ -566,10 +588,12 @@ namespace KartGame.KartSystems
             }
 
             bool validPosition = false;
-            if (Physics.Raycast(transform.position + (transform.up * 0.1f), -transform.up, out RaycastHit hit, 3.0f, 1 << 9 | 1 << 10 | 1 << 11)) // Layer: ground (9) / Environment(10) / Track (11)
+            if (Physics.Raycast(transform.position + (transform.up * 0.1f), -transform.up, out RaycastHit hit, 3.0f,
+                    1 << 9 | 1 << 10 | 1 << 11)) // Layer: ground (9) / Environment(10) / Track (11)
             {
                 Vector3 lerpVector = (m_HasCollision && m_LastCollisionNormal.y > hit.normal.y) ? m_LastCollisionNormal : hit.normal;
-                m_VerticalReference = Vector3.Slerp(m_VerticalReference, lerpVector, Mathf.Clamp01(AirborneReorientationCoefficient * Time.fixedDeltaTime * (GroundPercent > 0.0f ? 10.0f : 1.0f)));    // Blend faster if on ground
+                m_VerticalReference = Vector3.Slerp(m_VerticalReference, lerpVector,
+                    Mathf.Clamp01(AirborneReorientationCoefficient * Time.fixedDeltaTime * (GroundPercent > 0.0f ? 10.0f : 1.0f))); // Blend faster if on ground
             }
             else
             {
@@ -587,7 +611,8 @@ namespace KartGame.KartSystems
                 finalOrientationDirection.Normalize();
                 if (finalOrientationDirection.sqrMagnitude > 0.0f)
                 {
-                    Rigidbody.MoveRotation(Quaternion.Lerp(Rigidbody.rotation, Quaternion.LookRotation(finalOrientationDirection, m_VerticalReference), Mathf.Clamp01(AirborneReorientationCoefficient * Time.fixedDeltaTime)));
+                    Rigidbody.MoveRotation(Quaternion.Lerp(Rigidbody.rotation, Quaternion.LookRotation(finalOrientationDirection, m_VerticalReference),
+                        Mathf.Clamp01(AirborneReorientationCoefficient * Time.fixedDeltaTime)));
                 }
             }
             else if (validPosition)
@@ -597,6 +622,50 @@ namespace KartGame.KartSystems
             }
 
             ActivateDriftVFX(IsDrifting && GroundPercent > 0.0f);
+
+            if (brake)
+            {
+                PLAYBACK_STATE playbackState;
+                kartBrake.getPlaybackState(out playbackState);
+                if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                {
+                    kartBrake.start();
+                }
+            }else
+            {
+                kartBrake.stop(STOP_MODE.ALLOWFADEOUT);
+            }
+             if (Mathf.Round(Rigidbody.velocity.magnitude) != 0)
+            {
+                if (accelerate)
+                {
+                    PLAYBACK_STATE playbackState;
+                    kartEngine.getPlaybackState(out playbackState);
+                    if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                    {
+                        kartEngine.start();
+                    }
+                    kartEngine.setParameterByName("Engine_Speed", Mathf.Round(Rigidbody.velocity.magnitude));
+                }
+            }
+            
+        }
+
+        void UpdateSoundEngine()
+        {
+            if (Rigidbody.velocity.magnitude != 0 && GroundPercent > 0.0f)
+            {
+                PLAYBACK_STATE playbackState;
+                kartEngine.getPlaybackState(out playbackState);
+                if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                {
+                    kartEngine.start();
+                }
+            }
+            else
+            {
+                kartEngine.stop(STOP_MODE.IMMEDIATE);
+            }
         }
     }
 }
