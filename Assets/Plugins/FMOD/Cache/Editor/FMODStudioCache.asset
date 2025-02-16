@@ -151,33 +151,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 6870
---- !u!114 &-5790860846376875718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Brake
-  m_EditorClassIdentifier: 
-  Path: event:/Brake
-  Guid:
-    Data1: -1473148789
-    Data2: 1241620874
-    Data3: -1868874110
-    Data4: 777993123
-  Banks:
-  - {fileID: 1469546791843036462}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 9800
-  Length: 2298
 --- !u!114 &-4653373918869731368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,6 +252,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2298
+--- !u!114 &-1354646450994989613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Brake 2
+  m_EditorClassIdentifier: 
+  Path: event:/Brake 2
+  Guid:
+    Data1: -1971955856
+    Data2: 1145765763
+    Data3: 960108200
+    Data4: 916394720
+  Banks:
+  - {fileID: 1469546791843036462}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2298
 --- !u!114 &-1257821416648485518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,15 +324,15 @@ MonoBehaviour:
   - {fileID: 1469546791843036462}
   EditorEvents:
   - {fileID: 2479537899039864771}
-  - {fileID: 8725813075841115666}
-  - {fileID: -5790860846376875718}
   - {fileID: -1257821416648485518}
+  - {fileID: -1354646450994989613}
+  - {fileID: 8304148900650936208}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1469546791843036462}
   StringsBanks:
   - {fileID: 989949406377994133}
-  cacheTime: 638752540739112452
+  cacheTime: 638753164131973591
   cacheVersion: 131622
 --- !u!114 &44549552851586562
 MonoBehaviour:
@@ -376,10 +376,10 @@ MonoBehaviour:
   Path: Karting Sound/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638752540739112452
+  lastModified: 638753164131973591
   FileSizes:
   - Name: Desktop
-    Value: 932
+    Value: 936
   Exists: 1
 --- !u!114 &1204688646041781212
 MonoBehaviour:
@@ -420,10 +420,10 @@ MonoBehaviour:
   Path: Karting Sound/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638752540739072478
+  lastModified: 638753164131933640
   FileSizes:
   - Name: Desktop
-    Value: 902240
+    Value: 901920
   Exists: 1
 --- !u!114 &2479537899039864771
 MonoBehaviour:
@@ -519,7 +519,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 67056
---- !u!114 &8725813075841115666
+--- !u!114 &8304148900650936208
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -529,18 +529,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Wall Hit
+  m_Name: event:/Wall Hit 2
   m_EditorClassIdentifier: 
-  Path: event:/Wall Hit
+  Path: event:/Wall Hit 2
   Guid:
-    Data1: -886196529
-    Data2: 1098222104
-    Data3: -1445561444
-    Data4: -1540359975
+    Data1: 702348775
+    Data2: 1127417049
+    Data3: -1620516208
+    Data4: 1138916737
   Banks:
   - {fileID: 1469546791843036462}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1

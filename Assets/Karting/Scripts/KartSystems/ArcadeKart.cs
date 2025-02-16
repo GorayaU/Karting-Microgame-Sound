@@ -629,7 +629,7 @@ namespace Karting.Scripts.KartSystems
                 kartBrake.getPlaybackState(out playbackState);
                 if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
                 {
-                    kartBrake.start();
+                    kartBrake.start(); 
                 }
             }else
             {
