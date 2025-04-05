@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{5ecef0b3-569a-4f72-9be8-ccf73f7f1fac}">
+		<property name="assetPath">
+			<value>Go Karts 3.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>67.056326530612239</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{addee770-5b65-4351-937b-0cc22c7a425c}</destination>
+		</relationship>
+	</object>
+</objects>
