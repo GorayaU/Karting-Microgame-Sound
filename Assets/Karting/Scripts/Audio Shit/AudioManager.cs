@@ -9,14 +9,16 @@ namespace Karting.Audio_Shit
         public static AudioManager Instance { get; private set; }
 
         private GameObject _player;
-        private EventInstance _musicEventInstance;
+        private static EventInstance _musicEventInstance;
         private static EventInstance _engeineEventInstance;
+        
+        public static int numCheckpointsPassed = 0; 
 
         private void Awake()
         {
             _player = GameObject.FindGameObjectWithTag("Player");
             InitializeMusic(FmodEvents.Instance.Music);
-            InitializeEngine(FmodEvents.Instance.Engine);
+            //InitializeEngine(FmodEvents.Instance.Engine);
             
             Instance = this;
             if (Instance == null)
@@ -48,6 +50,11 @@ namespace Karting.Audio_Shit
         {
             _musicEventInstance = CreateEventInstance(musicReference);
             _musicEventInstance.start();
+        }
+        
+        public static void SetMusicParameter(string parameterName, float parameterValue)
+        {
+            _musicEventInstance.setParameterByName(parameterName, parameterValue);
         }
 
         private void InitializeEngine(EventReference engineReference)

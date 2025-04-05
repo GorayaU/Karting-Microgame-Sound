@@ -1,5 +1,6 @@
 using FMODUnity;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Karting.Audio_Shit
 {
@@ -22,7 +23,6 @@ namespace Karting.Audio_Shit
         [field: SerializeField] public EventReference Congrats { get; private set; }
         [field: SerializeField] public EventReference Lights { get; private set; }
         [field: SerializeField] public EventReference Winning { get; private set; }
-        
         
         public static FmodEvents Instance { get; private set; }
         

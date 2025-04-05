@@ -1,7 +1,9 @@
 using System.Collections;
+using FMOD.Studio;
 using UnityEngine;
 using UnityEngine.Playables;
 using KartGame.KartSystems;
+using Karting.Audio_Shit;
 using Karting.Scripts.KartSystems;
 using UnityEngine.SceneManagement;
 
@@ -47,6 +49,8 @@ public class GameFlowManager : MonoBehaviour
     string m_SceneToLoad;
     float elapsedTimeBeforeEndScene = 0;
 
+    private EventInstance Clapping;
+
     void Start()
     {
         if (autoFindKarts)
@@ -80,6 +84,8 @@ public class GameFlowManager : MonoBehaviour
         StartCoroutine(ShowObjectivesRoutine());
 
         StartCoroutine(CountdownThenStartRaceRoutine());
+
+        Clapping = AudioManager.Instance.CreateEventInstance(FmodEvents.Instance.Clapping);
     }
 
     IEnumerator CountdownThenStartRaceRoutine() {
@@ -157,13 +163,24 @@ public class GameFlowManager : MonoBehaviour
         endGameFadeCanvasGroup.gameObject.SetActive(true);
         if (win)
         {
+            
             m_SceneToLoad = winSceneName;
             m_TimeLoadEndGameScene = Time.time + endSceneLoadDelay + delayBeforeFadeToBlack;
-            
 
             // create a game message
             winDisplayMessage.delayBeforeShowing = delayBeforeWinMessage;
             winDisplayMessage.gameObject.SetActive(true);
+            
+            AudioManager.Instance.PlayOneShot(FmodEvents.Instance.Winning, transform.position);
+            
+            PLAYBACK_STATE playbackState;
+            Clapping.getPlaybackState(out playbackState);
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                Clapping.start(); 
+            }
+            
+            AudioManager.Instance.PlayOneShot(FmodEvents.Instance.Congrats, transform.position);
         }
         else
         {

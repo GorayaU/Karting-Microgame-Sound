@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using FMOD.Studio;
+using Karting.Audio_Shit;
+using UnityEngine;
 
 /// <summary>
 /// This class inherits from TargetObject and represents a PickupObject.
@@ -15,6 +17,7 @@ public class PickupObject : TargetObject
     
     [Tooltip("Destroy this gameobject after collectDuration seconds")]
     public float collectDuration = 0f;
+    
 
     void Start() {
         Register();
@@ -35,7 +38,10 @@ public class PickupObject : TargetObject
         Objective.OnUnregisterPickup(this);
 
         TimeManager.OnAdjustTime(TimeGained);
-
+        
+        AudioManager.Instance.PlayOneShot(FmodEvents.Instance.CheckpointPassed, transform.position);
+        AudioManager.numCheckpointsPassed += 1;
+        AudioManager.SetMusicParameter("Checkpoints_Passed", AudioManager.numCheckpointsPassed);
         Destroy(gameObject, collectDuration);
     }
     

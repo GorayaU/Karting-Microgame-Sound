@@ -7788,6 +7788,27 @@ MonoBehaviour:
       Data3: -1561702493
       Data4: 748424681
     Path: event:/Song
+  <Clapping>k__BackingField:
+    Guid:
+      Data1: 882819652
+      Data2: 1240329609
+      Data3: 1924164246
+      Data4: 759249129
+    Path: event:/Clapping
+  <Crows>k__BackingField:
+    Guid:
+      Data1: -1794420343
+      Data2: 1285623984
+      Data3: 1201098392
+      Data4: -917603872
+    Path: event:/Crows
+  <Wind>k__BackingField:
+    Guid:
+      Data1: -871283642
+      Data2: 1239353610
+      Data3: 817857950
+      Data4: 532697762
+    Path: event:/Wind
   <Engine>k__BackingField:
     Guid:
       Data1: 251984799
@@ -7802,6 +7823,13 @@ MonoBehaviour:
       Data3: 960108200
       Data4: 916394720
     Path: event:/Brake
+  <Reverse>k__BackingField:
+    Guid:
+      Data1: 2056471439
+      Data2: 1201918387
+      Data3: -1672237952
+      Data4: 1960609516
+    Path: event:/Reverse
   <WallHit>k__BackingField:
     Guid:
       Data1: 702348775
@@ -7809,6 +7837,34 @@ MonoBehaviour:
       Data3: -1620516208
       Data4: 1138916737
     Path: event:/Wall Hit
+  <CheckpointPassed>k__BackingField:
+    Guid:
+      Data1: 1839413199
+      Data2: 1089144802
+      Data3: -1552404330
+      Data4: 250852236
+    Path: event:/CheckPoint Passed
+  <Congrats>k__BackingField:
+    Guid:
+      Data1: 97871323
+      Data2: 1285805486
+      Data3: -254606197
+      Data4: 1686995843
+    Path: event:/Congrats
+  <Lights>k__BackingField:
+    Guid:
+      Data1: 506156704
+      Data2: 1193355392
+      Data3: -454025286
+      Data4: -765887622
+    Path: event:/Lights
+  <Winning>k__BackingField:
+    Guid:
+      Data1: 1083910837
+      Data2: 1292836714
+      Data3: -1853613154
+      Data4: -968073801
+    Path: event:/Winning
 --- !u!1001 &801682767
 PrefabInstance:
   m_ObjectHideFlags: 0
