@@ -332,7 +332,7 @@ MonoBehaviour:
   - {fileID: 1469546791843036462}
   StringsBanks:
   - {fileID: 989949406377994133}
-  cacheTime: 638753164131973591
+  cacheTime: 638753187138420848
   cacheVersion: 131622
 --- !u!114 &44549552851586562
 MonoBehaviour:
@@ -376,7 +376,7 @@ MonoBehaviour:
   Path: Karting Sound/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638753164131973591
+  lastModified: 638753187138420848
   FileSizes:
   - Name: Desktop
     Value: 936
@@ -420,10 +420,10 @@ MonoBehaviour:
   Path: Karting Sound/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638753164131933640
+  lastModified: 638753187138257653
   FileSizes:
   - Name: Desktop
-    Value: 901920
+    Value: 902080
   Exists: 1
 --- !u!114 &2479537899039864771
 MonoBehaviour:
