@@ -1,3 +1,4 @@
+using System;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
@@ -17,6 +18,7 @@ namespace Karting.Audio_Shit
         private void Awake()
         {
             _player = GameObject.FindGameObjectWithTag("Player");
+
             InitializeMusic(FmodEvents.Instance.Music);
             //InitializeEngine(FmodEvents.Instance.Engine);
             
@@ -46,7 +48,7 @@ namespace Karting.Audio_Shit
             return eventInstance;
         }
 
-        private void InitializeMusic(EventReference musicReference)
+        public void InitializeMusic(EventReference musicReference)
         {
             _musicEventInstance = CreateEventInstance(musicReference);
             _musicEventInstance.start();

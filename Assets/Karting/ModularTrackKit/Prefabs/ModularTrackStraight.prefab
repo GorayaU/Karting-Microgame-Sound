@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7748086242692145557}
   - component: {fileID: 3775431517023351781}
-  - component: {fileID: 5967934792431653132}
+  - component: {fileID: 6226665840252127596}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -54,7 +54,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.48022842, y: 1.1903484, z: 10.131259}
   m_Center: {x: -0.04038906, y: 0.09517425, z: -0.9702406}
---- !u!114 &5967934792431653132
+--- !u!114 &6226665840252127596
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,9 +63,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1576773099064246270}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f97abeb39071a9478589420160c72f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CollisionTag: Player
+  EventReference:
+    Guid:
+      Data1: 702348775
+      Data2: 1127417049
+      Data3: -1620516208
+      Data4: 1138916737
+    Path: event:/Wall Hit
+  Event: 
+  EventPlayTrigger: 3
+  EventStopTrigger: 4
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1579282987822437354
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,7 +287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5469412083868218367}
   - component: {fileID: 1697627328812884073}
-  - component: {fileID: 5779316828751308294}
+  - component: {fileID: 619879882711245238}
   m_Layer: 0
   m_Name: Collider (1)
   m_TagString: Untagged
@@ -312,7 +331,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.48022842, y: 1.1903484, z: 10.131259}
   m_Center: {x: -0.04038906, y: 0.09517425, z: -0.9702406}
---- !u!114 &5779316828751308294
+--- !u!114 &619879882711245238
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -321,6 +340,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 3650198947053430855}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f97abeb39071a9478589420160c72f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CollisionTag: Player
+  EventReference:
+    Guid:
+      Data1: 702348775
+      Data2: 1127417049
+      Data3: -1620516208
+      Data4: 1138916737
+    Path: event:/Wall Hit
+  Event: 
+  EventPlayTrigger: 3
+  EventStopTrigger: 4
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20

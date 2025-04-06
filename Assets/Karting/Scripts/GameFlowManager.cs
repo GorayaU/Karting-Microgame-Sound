@@ -89,7 +89,9 @@ public class GameFlowManager : MonoBehaviour
     }
 
     IEnumerator CountdownThenStartRaceRoutine() {
-        yield return new WaitForSeconds(3f);
+        
+        AudioManager.Instance.PlayOneShot(FmodEvents.Instance.Lights, transform.position);
+        yield return new WaitForSeconds(1.5f);
         StartRace();
     }
 
@@ -137,6 +139,27 @@ public class GameFlowManager : MonoBehaviour
                 {
                     SceneManager.LoadScene(m_SceneToLoad);
                     gameState = GameState.Play;
+
+                    if (m_ObjectiveManager.AreAllObjectivesCompleted())
+                    {
+                        FMODUnity.RuntimeManager.GetBus("bus:/").stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    
+                        PLAYBACK_STATE playbackState;
+                        Clapping.getPlaybackState(out playbackState);
+                        if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                        {
+                            Clapping.start(); 
+                        }
+            
+                        AudioManager.Instance.PlayOneShot(FmodEvents.Instance.Congrats, transform.position);
+                    }
+                    else if (m_TimeManager.IsFinite && m_TimeManager.IsOver)
+                    {
+                        FMODUnity.RuntimeManager.GetBus("bus:/").stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+
+                        AudioManager.Instance.InitializeMusic(FmodEvents.Instance.Music);
+                    }
+                    
                 }
             }
         }
@@ -163,24 +186,14 @@ public class GameFlowManager : MonoBehaviour
         endGameFadeCanvasGroup.gameObject.SetActive(true);
         if (win)
         {
-            
+            AudioManager.Instance.PlayOneShot(FmodEvents.Instance.Winning, transform.position);
+
             m_SceneToLoad = winSceneName;
             m_TimeLoadEndGameScene = Time.time + endSceneLoadDelay + delayBeforeFadeToBlack;
 
             // create a game message
             winDisplayMessage.delayBeforeShowing = delayBeforeWinMessage;
             winDisplayMessage.gameObject.SetActive(true);
-            
-            AudioManager.Instance.PlayOneShot(FmodEvents.Instance.Winning, transform.position);
-            
-            PLAYBACK_STATE playbackState;
-            Clapping.getPlaybackState(out playbackState);
-            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
-            {
-                Clapping.start(); 
-            }
-            
-            AudioManager.Instance.PlayOneShot(FmodEvents.Instance.Congrats, transform.position);
         }
         else
         {

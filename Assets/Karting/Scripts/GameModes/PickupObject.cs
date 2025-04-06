@@ -42,7 +42,6 @@ public class PickupObject : TargetObject
         AudioManager.Instance.PlayOneShot(FmodEvents.Instance.CheckpointPassed, transform.position);
         AudioManager.numCheckpointsPassed += 1;
         AudioManager.SetMusicParameter("Checkpoints_Passed", AudioManager.numCheckpointsPassed);
-        Destroy(gameObject, collectDuration);
     }
     
     void OnTriggerEnter(Collider other)

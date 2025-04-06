@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Karting.Audio_Shit;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace KartGame.UI
@@ -11,6 +12,7 @@ namespace KartGame.UI
         public void LoadTargetScene() 
         {
             SceneManager.LoadSceneAsync(SceneName);
+
         }
     }
 }
